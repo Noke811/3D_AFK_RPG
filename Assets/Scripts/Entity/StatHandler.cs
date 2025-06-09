@@ -6,15 +6,10 @@ public class StatHandler : MonoBehaviour
     [SerializeField] private StatData data;
     private Dictionary<StatType, float> statDict;
 
-    [Header("EXP")]
-    [SerializeField] private float baseExp = 10f;
-    [SerializeField] private float expFactor = 5f;
-
-    public int Level { get; private set; }
     public float CurHp { get; private set; }
+    public float MaxHp => statDict?.GetValueOrDefault(StatType.Health) ?? 0f;
     public float CurMp { get; private set; }
-    public float CurExp { get; private set; }
-    public float NextExp { get; private set; }
+    public float MaxMp => statDict?.GetValueOrDefault(StatType.Mana) ?? 0f;
 
     private float baseAttack;
     private float bonusAttack = 0f;
@@ -24,34 +19,20 @@ public class StatHandler : MonoBehaviour
     private float bonusDefense = 0f;
     public float Defense => baseDefense + bonusDefense;
 
-    // 캐릭터 스탯 초기화
-    public void Init(int _level = 1)
+    private void Awake()
     {
         statDict = data.GetStatData();
-
-        SetLevel(_level);
     }
 
-    // 레벨 설정
-    private void SetLevel(int _level)
+    // 레벨에 따른 스탯 증가 및 회복
+    public void ApplyLevel(int level)
     {
+        baseAttack = statDict[StatType.Attack] + statDict[StatType.AttackGrowth] * (level - 1);
+        baseDefense = statDict[StatType.Defense] + statDict[StatType.DefenseGrowth] * (level - 1);
+
         // 레벨업 시 체력, 마나 회복
-        CurHp = statDict[StatType.Health];
-        CurMp = statDict[StatType.Mana];
-
-        Level = _level;
-        int lvMinusOne = Level - 1;
-
-        CurExp = 0f;
-        NextExp = baseExp + expFactor * lvMinusOne;
-        baseAttack = statDict[StatType.Attack] + statDict[StatType.AttackGrowth] * lvMinusOne;
-        baseDefense = statDict[StatType.Defense] + statDict[StatType.DefenseGrowth] * lvMinusOne;
-    }
-
-    // 레벨 업
-    public void LevelUp()
-    {
-        SetLevel(Level + 1);
+        CurHp = MaxHp;
+        CurMp = MaxMp;
     }
 
     // 데미지
@@ -70,6 +51,7 @@ public class StatHandler : MonoBehaviour
         if (CurHp < 0f)
         {
             CurHp = 0f;
+            Debug.Log("플레이어 사망!");
             // 사망 상태로
         }
     }
