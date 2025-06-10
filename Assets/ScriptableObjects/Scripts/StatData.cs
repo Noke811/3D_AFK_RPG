@@ -11,8 +11,15 @@ public enum StatType
     DefenseGrowth,
 }
 
+public enum StatDataType
+{
+    Character,
+    Usable,
+    Equipment,
+}
+
 [System.Serializable]
-public struct StatEntry
+public class StatEntry
 {
     public StatType statType;
     public float value;
@@ -21,8 +28,14 @@ public struct StatEntry
 [CreateAssetMenu(fileName = "New StatData", menuName = "Data/Stat")]
 public class StatData : ScriptableObject
 {
+    [SerializeField] private StatDataType type;
     [SerializeField] private List<StatEntry> stats;
 
+    public bool IsCharacter => type == StatDataType.Character;
+    public bool IsUsable => type == StatDataType.Usable;
+    public bool IsEquipment => type == StatDataType.Equipment;
+
+    // 스탯 데이터에 대한 딕셔너리 반환
     public Dictionary<StatType, float> GetStatData()
     {
         Dictionary<StatType, float> dict = new();

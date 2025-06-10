@@ -10,19 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0b15234dd1d6d049a3d77fb18133769, type: 3}
-  m_Name: Female_A
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  isCharacter: 1
+  isCharacter: 0
   stats:
-  - statType: 0
-    value: 100
-  - statType: 1
-    value: 50
   - statType: 2
-    value: 5
+    value: 7
   - statType: 3
-    value: 5
-  - statType: 4
-    value: 1
-  - statType: 5
-    value: 1
+    value: 3
