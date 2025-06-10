@@ -6,8 +6,10 @@ public class Item : MonoBehaviour
 
     public void Toched()
     {
-        GameManager.Instance.Player.Inventory.AddItem(data);
-        Destroy(gameObject);
+        if (!GameManager.Instance.Player.Inventory.AddItem(data))
+            Debug.Log("인벤토리가 가득 차서 들어갈 수 없습니다!");
+        else
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

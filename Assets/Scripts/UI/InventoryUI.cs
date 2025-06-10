@@ -7,6 +7,9 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] GameObject slotPrefab;
     private List<InventorySlot> slots;
 
+    [SerializeField] Transform draggingParent;
+    public static InventorySlot dragging;
+
     // 슬롯 생성 및 초기화
     public void Init(int amount)
     {
@@ -15,7 +18,7 @@ public class InventoryUI : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             InventorySlot slot = Instantiate(slotPrefab, slotParent).GetComponent<InventorySlot>();
-            slot.Init();
+            slot.Init(draggingParent);
             slots.Add(slot);
         }
     }

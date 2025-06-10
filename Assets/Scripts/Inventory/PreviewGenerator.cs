@@ -6,8 +6,7 @@ public class PreviewGenerator : MonoBehaviour
     private Camera modelCam;
     [SerializeField] private RenderTexture renderTexture;
     [SerializeField] Transform pivot;
-    [SerializeField] LayerMask uiModelLayer;
-    private int _uiModelLayer = 6;
+    private const int LAYER_UIMODEL = 6;
 
     private Dictionary<ItemData, Sprite> previewCache;
 
@@ -32,27 +31,25 @@ public class PreviewGenerator : MonoBehaviour
     {
         // 1. 인스턴스 생성
         GameObject instance = Instantiate(item.ItemPrefab, pivot);
-        SetLayerRecursive(instance.transform, _uiModelLayer);
+        instance.transform.localPosition = Vector3.zero;
+        SetLayerRecursive(instance.transform, LAYER_UIMODEL);
 
-        // 2. 카메라 설정
-        modelCam.transform.position = pivot.position + new Vector3(0, 0, -1);
-        modelCam.transform.LookAt(pivot);
-
-        // 3. 찍기
+        // 2. 찍기
+        modelCam.targetTexture = renderTexture;
         modelCam.Render();
 
-        // 4. Texture2D로 저장
+        // 3. Texture2D로 저장
         RenderTexture.active = renderTexture;
         Texture2D tex = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGBA32, false);
         tex.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
         tex.Apply();
         RenderTexture.active = null;
 
-        // 5. Sprite로 변환
+        // 4. Sprite로 변환
         Sprite sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
         previewCache[item] = sprite;
 
-        // 6. 정리
+        // 5. 정리
         Destroy(instance);
 
         return sprite;

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class ItemEntry
 {
@@ -30,7 +29,7 @@ public class Inventory
     }
 
     // 인벤토리에 아이템 추가
-    public void AddItem(ItemData item)
+    public bool AddItem(ItemData item)
     {
         // 아이템 엔트리에서 수량 추가
         foreach(ItemEntry entry in itemList)
@@ -39,7 +38,7 @@ public class Inventory
             {
                 entry.amount++;
                 inventoryUI.UpdateSlotAmount(entry);
-                return;
+                return true;
             }
         }
 
@@ -49,16 +48,22 @@ public class Inventory
             ItemEntry entry = new ItemEntry(item);
             itemList.Add(entry);
             inventoryUI.ConnectSlot(entry);
-            return;
+            return true;
         }
 
         // 인벤토리가 가득 찼음
-        Debug.Log("인벤토리가 가득 찼습니다.");
+        return false;
     }
-    public void AddItem(ItemData item, int amount)
+    public int AddItem(ItemData item, int amount)
     {
-        for(int i = 0; i < amount; i++)
-            AddItem(item);
+        int remain = amount;
+        while(remain > 0)
+        {
+            if (!AddItem(item)) return remain;
+            remain--;
+        }
+        
+        return remain;
     }
 
     // 아이템 사용
