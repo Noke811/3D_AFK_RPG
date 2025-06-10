@@ -3,40 +3,42 @@ using UnityEngine;
 
 public class ItemEntry
 {
-    public Item item;
+    public ItemData item;
     public int amount;
     public bool Isfull => amount >= item.MaxAmount;
 
-    public ItemEntry(Item _item, StatHandler owner)
+    public ItemEntry(ItemData _item)
     {
         item = _item;
-        item.ChangeOwner(owner);
         amount = 1;
     }
 }
 
-public class Inventory : MonoBehaviour
+public class Inventory
 {
     private List<ItemEntry> itemList;
     private int maxAmount;
-
     private ItemEntry equipped = null;
+
+    private InventoryUI inventoryUI;
 
     public Inventory(int _maxAmount)
     {
         itemList = new List<ItemEntry>();
         maxAmount = _maxAmount;
+        inventoryUI = GameManager.Instance.UIManager.InventoryUI;
     }
 
     // 인벤토리에 아이템 추가
-    public void AddItem(Item item)
+    public void AddItem(ItemData item)
     {
         // 아이템 엔트리에서 수량 추가
         foreach(ItemEntry entry in itemList)
         {
-            if(entry.item.Id == item.Id && !entry.Isfull)
+            if(entry.item == item && !entry.Isfull)
             {
                 entry.amount++;
+                inventoryUI.UpdateSlotAmount(entry);
                 return;
             }
         }
@@ -44,44 +46,52 @@ public class Inventory : MonoBehaviour
         // 새 아이템 엔트리 추가
         if(itemList.Count < maxAmount)
         {
-            itemList.Add(new ItemEntry(item, GameManager.Instance.Player.Stat));
+            ItemEntry entry = new ItemEntry(item);
+            itemList.Add(entry);
+            inventoryUI.ConnectSlot(entry);
             return;
         }
 
         // 인벤토리가 가득 찼음
         Debug.Log("인벤토리가 가득 찼습니다.");
     }
-    public void AddItem(Item item, int amount)
+    public void AddItem(ItemData item, int amount)
     {
         for(int i = 0; i < amount; i++)
             AddItem(item);
     }
 
     // 아이템 사용
-    public void UseItem(ItemEntry entry)
+    public void UseItem(ItemEntry entry, StatHandler owner)
     {
-        entry.item.Use();
-
+        entry.item.Use(owner);
         entry.amount--;
+
         if(entry.amount <= 0)
+        {
             itemList.Remove(entry);
+            inventoryUI.ClearSlot(entry);
+        }
     }
 
     // 장비 착용
-    public void EquipItem(ItemEntry entry)
+    public void EquipItem(ItemEntry entry, StatHandler owner)
     {
-        if(equipped != null) equipped.item.Equip(false);
+        if(equipped != null) UnequipItem(equipped, owner);
 
-        entry.item.Equip(true);
+        entry.item.Equip(owner, true);
+        inventoryUI.UpdateSlotEquip(entry, true);
         equipped = entry;
     }
 
     // 장비 해제
-    public void UnequipItem(ItemEntry entry)
+    public void UnequipItem(ItemEntry entry, StatHandler owner)
     {
-        entry.item.Equip(false);
-
         if (equipped == entry)
+        {
+            entry.item.Equip(owner, false);
+            inventoryUI.UpdateSlotEquip(entry, false);
             equipped = null;
+        }
     }
 }

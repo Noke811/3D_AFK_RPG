@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0b15234dd1d6d049a3d77fb18133769, type: 3}
-  m_Name: Spear
+  m_Script: {fileID: 11500000, guid: 72486fcd01988b74fbc3c8b5046edde7, type: 3}
+  m_Name: Item_Medikit_Red
   m_EditorClassIdentifier: 
-  isCharacter: 0
-  stats:
-  - statType: 2
-    value: 10
+  statData: {fileID: 11400000, guid: 4d060b2d907824a43b98ba971e611400, type: 2}
+  itemPrefab: {fileID: 3082735886372673451, guid: a29dc642ba9138947bae49db67ec1b56, type: 3}

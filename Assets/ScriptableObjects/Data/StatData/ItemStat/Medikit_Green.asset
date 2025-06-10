@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0b15234dd1d6d049a3d77fb18133769, type: 3}
-  m_Name: Medkit_Green
+  m_Name: Medikit_Green
   m_EditorClassIdentifier: 
-  isCharacter: 0
+  type: 1
   stats:
   - statType: 0
     value: 50

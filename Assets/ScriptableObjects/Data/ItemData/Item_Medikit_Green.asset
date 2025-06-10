@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72486fcd01988b74fbc3c8b5046edde7, type: 3}
+  m_Name: Item_Medikit_Green
+  m_EditorClassIdentifier: 
+  statData: {fileID: 11400000, guid: dc44b29b3aba9f64a84a5eb4684e485a, type: 2}
+  itemPrefab: {fileID: 1171595132983499836, guid: 7761548d59dfac5408c8051e0bdf00d0, type: 3}

@@ -4,6 +4,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public const string TAG_PLAYER = "Player";
+
     [field: Header("External Objects")]
     [field: SerializeField] public UIManager UIManager { get; private set; }
     [field: SerializeField] public Player Player { get; private set; }

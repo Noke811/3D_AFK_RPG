@@ -5,14 +5,17 @@ public class Player : MonoBehaviour
     public Animator Animator { get; private set; }
     public CharacterController Controller { get; private set; }
     public StatHandler Stat { get; private set; }
+    public Inventory Inventory { get; private set; }
 
     [Header("EXP")]
     [SerializeField] private float baseExp = 10f;
     [SerializeField] private float expFactor = 5f;
     public float CurExp { get; private set; }
     public float NextExp { get; private set; }
-
     public int Level { get; private set; }
+
+    [Header("Inventory")]
+    [SerializeField] private int slotAmount = 15;
 
     private void Awake()
     {
@@ -24,6 +27,9 @@ public class Player : MonoBehaviour
     private void Start()
     {
         SetLevel(1);
+
+        Inventory = new Inventory(slotAmount);
+        GameManager.Instance.UIManager.InventoryUI.Init(slotAmount);
     }
 
     // 경험치 획득
