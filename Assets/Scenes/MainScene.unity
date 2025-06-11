@@ -5927,7 +5927,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316670941}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000069017485, y: 0.9765009, z: -0.21551341, w: 0.000000031272133}
+  m_LocalRotation: {x: 0.0000000069017476, y: 0.9765009, z: -0.21551341, w: 0.00000003127213}
   m_LocalPosition: {x: -1.4e-44, y: 1.16, z: 2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18549,7 +18549,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.34388554, y: -0.000000022849429, z: 0.000000008367937, w: 0.9390116}
+  m_LocalRotation: {x: 0.34388554, y: 0.000000022849429, z: -0.000000008367937, w: 0.9390116}
   m_LocalPosition: {x: 1.7e-44, y: 2.47, z: -2.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28532,6 +28532,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderTexture: {fileID: 8400000, guid: 0258fa5fb4e6bb44996db04b391b8a32, type: 2}
   pivot: {fileID: 878887980}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1001 &1540466008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33513,7 +33516,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767971607}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.34388554, y: -0.000000022849429, z: 0.000000008367937, w: 0.9390116}
+  m_LocalRotation: {x: 0.34388554, y: 0.000000022849429, z: -0.000000008367937, w: 0.9390116}
   m_LocalPosition: {x: 1.7e-44, y: 2.47, z: -2.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

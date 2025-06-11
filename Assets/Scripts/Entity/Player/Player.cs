@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
         Stat.ApplyLevel(Level);
     }
 
-    // test : 아이템 1프레임 딜레이 후 추가
+    // test : 아이템 1프레임 딜레이 후 추가 -> 딜레이 없이 추가하면, 프리뷰가 겹쳐서 보이는 버그 발생
     private IEnumerator CoAddItem()
     {
         for (int i = 0; i < datas.Count; i++)

@@ -6,7 +6,8 @@ public class PreviewGenerator : MonoBehaviour
     private Camera modelCam;
     [SerializeField] private RenderTexture renderTexture;
     [SerializeField] Transform pivot;
-    private const int LAYER_UIMODEL = 6;
+    [SerializeField] LayerMask layerMask;
+    private int layer_UIModel;
 
     private Dictionary<ItemData, Sprite> previewCache;
 
@@ -15,6 +16,7 @@ public class PreviewGenerator : MonoBehaviour
         modelCam = GetComponentInChildren<Camera>();
 
         previewCache = new Dictionary<ItemData, Sprite>();
+        layer_UIModel = GetSingleLayer(layerMask);
     }
 
     // 아이템 프리뷰 이미지 가져오기
@@ -32,7 +34,7 @@ public class PreviewGenerator : MonoBehaviour
         // 1. 인스턴스 생성
         GameObject instance = Instantiate(item.ItemPrefab, pivot);
         instance.transform.localPosition = Vector3.zero;
-        SetLayerRecursive(instance.transform, LAYER_UIMODEL);
+        SetLayerRecursive(instance.transform, layer_UIModel);
 
         // 2. 찍기
         modelCam.targetTexture = renderTexture;
@@ -56,10 +58,30 @@ public class PreviewGenerator : MonoBehaviour
     }
 
     // 자식 오브젝트의 레이어까지 바꾸는 재귀 함수
-    void SetLayerRecursive(Transform t, int layer)
+    private void SetLayerRecursive(Transform t, int layer)
     {
         t.gameObject.layer = layer;
         foreach (Transform child in t)
             SetLayerRecursive(child, layer);
+    }
+
+    // 단일 레이어마스크 정수형 레이어로 변환
+    private int GetSingleLayer(LayerMask mask)
+    {
+        if (mask.value == 0)
+        {
+            throw new System.Exception("LayerMask에 아무 레이어도 선택되지 않았습니다.");
+        }
+
+        int value = mask.value;
+        int layer = -1;
+
+        while (value != 0)
+        {
+            value = value >> 1;
+            layer++;
+        }
+
+        return layer;
     }
 }

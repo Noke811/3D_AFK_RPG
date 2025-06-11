@@ -4,6 +4,7 @@ public class Item : MonoBehaviour
 {
     [SerializeField] private ItemData data;
 
+    // 아이템과 닿을 시 아이템 추가
     public void Toched()
     {
         if (!GameManager.Instance.Player.Inventory.AddItem(data))
