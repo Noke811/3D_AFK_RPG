@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,11 +36,8 @@ public class Player : MonoBehaviour
         GameManager.Instance.UIManager.InventoryUI.Init(slotAmount);
         GameManager.Instance.UIManager.EquipmentUI.Init();
 
-        // test : 아이템 추가
-        //for (int i = 0; i < datas.Count; i++)
-        //{
-        //    Inventory.AddItem(datas[i], amounts[i]);
-        //}
+        //test: 아이템 추가
+        StartCoroutine(CoAddItem());
     }
 
     // 경험치 획득
@@ -64,5 +62,15 @@ public class Player : MonoBehaviour
         NextExp = baseExp + expFactor * (Level - 1);
 
         Stat.ApplyLevel(Level);
+    }
+
+    // test : 아이템 1프레임 딜레이 후 추가
+    private IEnumerator CoAddItem()
+    {
+        for (int i = 0; i < datas.Count; i++)
+        {
+            Inventory.AddItem(datas[i], amounts[i]);
+            yield return null;
+        }
     }
 }
