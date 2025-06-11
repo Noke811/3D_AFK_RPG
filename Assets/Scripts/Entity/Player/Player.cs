@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
 
     [Header("Inventory")]
     [SerializeField] private int slotAmount = 15;
+    [SerializeField] List<ItemData> datas;
+    [SerializeField] List<int> amounts;
 
     private void Awake()
     {
@@ -30,6 +33,12 @@ public class Player : MonoBehaviour
 
         Inventory = new Inventory(slotAmount);
         GameManager.Instance.UIManager.InventoryUI.Init(slotAmount);
+
+        // test : 아이템 추가
+        for (int i = 0; i < datas.Count; i++)
+        {
+            Inventory.AddItem(datas[i], amounts[i]);
+        }
     }
 
     // 경험치 획득

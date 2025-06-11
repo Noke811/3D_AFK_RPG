@@ -1,5 +1,13 @@
 using System.Collections.Generic;
 
+public enum EquipType
+{
+    Head,
+    LeftHand,
+    RightHand,
+}
+
+// 아이템 정보와 수량을 저장
 public class ItemEntry
 {
     public ItemData item;
@@ -17,7 +25,7 @@ public class Inventory
 {
     private List<ItemEntry> itemList;
     private int maxAmount;
-    private ItemEntry equipped = null;
+    private Dictionary<EquipType, ItemEntry> equippedDict;
 
     private InventoryUI inventoryUI;
 
@@ -25,6 +33,7 @@ public class Inventory
     {
         itemList = new List<ItemEntry>();
         maxAmount = _maxAmount;
+        equippedDict = new Dictionary<EquipType, ItemEntry>();
         inventoryUI = GameManager.Instance.UIManager.InventoryUI;
     }
 
@@ -80,23 +89,21 @@ public class Inventory
     }
 
     // 장비 착용
-    public void EquipItem(ItemEntry entry, StatHandler owner)
+    public void EquipItem(EquipType type, ItemEntry entry, StatHandler owner)
     {
-        if(equipped != null) UnequipItem(equipped, owner);
+        if(equippedDict.ContainsKey(type)) UnequipItem(type, owner);
 
-        entry.item.Equip(owner, true);
-        inventoryUI.UpdateSlotEquip(entry, true);
-        equipped = entry;
+        equippedDict[type] = entry;
+        equippedDict[type].item.Equip(owner, true);
     }
 
     // 장비 해제
-    public void UnequipItem(ItemEntry entry, StatHandler owner)
+    public void UnequipItem(EquipType type, StatHandler owner)
     {
-        if (equipped == entry)
+        if (equippedDict.ContainsKey(type))
         {
-            entry.item.Equip(owner, false);
-            inventoryUI.UpdateSlotEquip(entry, false);
-            equipped = null;
+            equippedDict[type].item.Equip(owner, false);
+            equippedDict.Remove(type);
         }
     }
 }
