@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Item_Spear
   m_EditorClassIdentifier: 
   statData: {fileID: 11400000, guid: 7225915b317d70c409b44422cca18749, type: 2}
+  equipType: 1
   itemPrefab: {fileID: 6736243499873580179, guid: 7c78dd3a687de2e41a1fc1235b7136af, type: 3}

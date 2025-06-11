@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Item_Sword
   m_EditorClassIdentifier: 
   statData: {fileID: 11400000, guid: 39dafe011644cb14cb3b9bb0b984b805, type: 2}
+  equipType: 1
   itemPrefab: {fileID: 7260786007399886132, guid: 11de4f91b3b76bd4499a8bde5b72bb63, type: 3}

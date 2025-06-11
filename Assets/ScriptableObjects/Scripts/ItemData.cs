@@ -1,5 +1,11 @@
 using UnityEngine;
 
+public enum EquipType
+{
+    Head,
+    Hand,
+}
+
 [CreateAssetMenu(fileName = "New Item", menuName = "Data/Item")]
 public class ItemData : ScriptableObject
 {
@@ -7,6 +13,10 @@ public class ItemData : ScriptableObject
     public int MaxAmount => statData.IsUsable ? 10 : 1;
     public bool IsUsable => statData.IsUsable;
     public bool IsEquipment => statData.IsEquipment;
+
+    // 장비만 설정
+    [SerializeField] private EquipType equipType;
+    public EquipType EquipType => equipType;
 
     [SerializeField] private GameObject itemPrefab;
     public GameObject ItemPrefab => itemPrefab;

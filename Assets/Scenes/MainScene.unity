@@ -5927,7 +5927,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316670941}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0000000025262146, y: 0.97650087, z: -0.21551342, w: -0.00000001144639}
+  m_LocalRotation: {x: 0.0000000069017485, y: 0.9765009, z: -0.21551341, w: 0.000000031272133}
   m_LocalPosition: {x: -1.4e-44, y: 1.16, z: 2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18549,7 +18549,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.34388554, y: 0.000000022849429, z: -0.000000008367937, w: 0.9390116}
+  m_LocalRotation: {x: 0.34388554, y: -0.000000022849429, z: 0.000000008367937, w: 0.9390116}
   m_LocalPosition: {x: 1.7e-44, y: 2.47, z: -2.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22705,7 +22705,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3436e0195f4f2fc42a78a554c37b38dd, type: 2}
   - {fileID: 11400000, guid: 1e4d26f38b2e4e345ab722b1a071748d, type: 2}
   - {fileID: 11400000, guid: 5bc5f97d81d66d44582446ee8a2f28a9, type: 2}
-  amounts: 01000000030000000200000001000000
+  amounts: 05000000050000000100000001000000
 --- !u!143 &1175801564
 CharacterController:
   m_ObjectHideFlags: 0
@@ -33509,7 +33509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767971607}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.34388554, y: 0.000000022849429, z: -0.000000008367937, w: 0.9390116}
+  m_LocalRotation: {x: 0.34388554, y: -0.000000022849429, z: 0.000000008367937, w: 0.9390116}
   m_LocalPosition: {x: 1.7e-44, y: 2.47, z: -2.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35763,6 +35763,7 @@ GameObject:
   - component: {fileID: 1873761150}
   - component: {fileID: 1873761149}
   - component: {fileID: 1873761148}
+  - component: {fileID: 1873761151}
   m_Layer: 5
   m_Name: Character
   m_TagString: Untagged
@@ -35843,6 +35844,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873761146}
   m_CullTransparentMesh: 1
+--- !u!114 &1873761151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873761146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c3367a89c761f4c9a0dc4845052010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1881853474
 PrefabInstance:
   m_ObjectHideFlags: 0

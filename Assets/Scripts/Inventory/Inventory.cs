@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public enum EquipType
+public enum EquipDetailType
 {
     Head,
     LeftHand,
@@ -25,7 +25,7 @@ public class Inventory
 {
     private List<ItemEntry> itemList;
     private int maxAmount;
-    private Dictionary<EquipType, ItemEntry> equippedDict;
+    private Dictionary<EquipDetailType, ItemEntry> equippedDict;
 
     private InventoryUI inventoryUI;
 
@@ -33,7 +33,7 @@ public class Inventory
     {
         itemList = new List<ItemEntry>();
         maxAmount = _maxAmount;
-        equippedDict = new Dictionary<EquipType, ItemEntry>();
+        equippedDict = new Dictionary<EquipDetailType, ItemEntry>();
         inventoryUI = GameManager.Instance.UIManager.InventoryUI;
     }
 
@@ -80,8 +80,9 @@ public class Inventory
     {
         entry.item.Use(owner);
         entry.amount--;
+        inventoryUI.UpdateSlotAmount(entry);
 
-        if(entry.amount <= 0)
+        if (entry.amount <= 0)
         {
             itemList.Remove(entry);
             inventoryUI.ClearSlot(entry);
@@ -89,7 +90,7 @@ public class Inventory
     }
 
     // 장비 착용
-    public void EquipItem(EquipType type, ItemEntry entry, StatHandler owner)
+    public void EquipItem(EquipDetailType type, ItemEntry entry, StatHandler owner)
     {
         if(equippedDict.ContainsKey(type)) UnequipItem(type, owner);
 
@@ -98,7 +99,7 @@ public class Inventory
     }
 
     // 장비 해제
-    public void UnequipItem(EquipType type, StatHandler owner)
+    public void UnequipItem(EquipDetailType type, StatHandler owner)
     {
         if (equippedDict.ContainsKey(type))
         {

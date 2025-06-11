@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EquipmentSlot : BaseSlot
 {
-    [SerializeField] private EquipType type;
+    [SerializeField] private EquipDetailType type;
 
     private Inventory inven;
     private StatHandler player;
@@ -27,5 +28,28 @@ public class EquipmentSlot : BaseSlot
         base.ClearSlot();
 
         inven.UnequipItem(type, player);
+    }
+
+    public override void OnDrop(PointerEventData eventData)
+    {
+        if (!UIManager.dragging.Entry.item.IsEquipment || !IsValidType(UIManager.dragging.Entry.item.EquipType)) return;
+
+        base.OnDrop(eventData);
+    }
+
+    private bool IsValidType(EquipType _type)
+    {
+        switch (type)
+        {
+            case EquipDetailType.Head:
+                return _type == EquipType.Head;
+
+            case EquipDetailType.LeftHand:
+            case EquipDetailType.RightHand:
+                return _type == EquipType.Hand;
+
+            default:
+                return false;
+        }
     }
 }
