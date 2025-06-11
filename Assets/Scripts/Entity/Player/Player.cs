@@ -33,12 +33,13 @@ public class Player : MonoBehaviour
 
         Inventory = new Inventory(slotAmount);
         GameManager.Instance.UIManager.InventoryUI.Init(slotAmount);
+        GameManager.Instance.UIManager.EquipmentUI.Init();
 
         // test : 아이템 추가
-        for (int i = 0; i < datas.Count; i++)
-        {
-            Inventory.AddItem(datas[i], amounts[i]);
-        }
+        //for (int i = 0; i < datas.Count; i++)
+        //{
+        //    Inventory.AddItem(datas[i], amounts[i]);
+        //}
     }
 
     // 경험치 획득

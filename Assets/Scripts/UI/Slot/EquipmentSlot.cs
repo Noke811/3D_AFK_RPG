@@ -9,10 +9,10 @@ public class EquipmentSlot : BaseSlot
 
     public override void Init()
     {
-        base.Init();
-
         inven = GameManager.Instance.Player.Inventory;
         player = GameManager.Instance.Player.Stat;
+
+        base.Init();
     }
 
     public override void SetSlot(ItemEntry _entry)

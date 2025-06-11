@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
     public PreviewGenerator PreviewGenerator => previewGenerator;
     [SerializeField] private GameObject TabUI;
     public InventoryUI InventoryUI { get; private set; }
+    public EquipmentUI EquipmentUI { get; private set; }
 
     [SerializeField] Transform draggingParent;
     public Transform DraggingParent => draggingParent;
@@ -14,6 +15,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         InventoryUI = TabUI.GetComponentInChildren<InventoryUI>(true);
+        EquipmentUI = TabUI.GetComponentInChildren<EquipmentUI>(true);
     }
 
     private void Update()
