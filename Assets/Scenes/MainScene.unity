@@ -22705,7 +22705,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3436e0195f4f2fc42a78a554c37b38dd, type: 2}
   - {fileID: 11400000, guid: 1e4d26f38b2e4e345ab722b1a071748d, type: 2}
   - {fileID: 11400000, guid: 5bc5f97d81d66d44582446ee8a2f28a9, type: 2}
-  amounts: 05000000050000000100000001000000
+  - {fileID: 11400000, guid: 44706c63124c82542a8823bf20640421, type: 2}
+  - {fileID: 11400000, guid: 407aecc9e9e693b449d9174a3e676e79, type: 2}
+  - {fileID: 11400000, guid: 32e6f485e09b7254b82ce18064862695, type: 2}
+  - {fileID: 11400000, guid: 323b80fc6d62e5346b4bbc493ec31780, type: 2}
+  amounts: 0500000005000000010000000100000001000000010000000100000001000000
 --- !u!143 &1175801564
 CharacterController:
   m_ObjectHideFlags: 0
@@ -41307,9 +41311,9 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 705507995}
   - {fileID: 988308895}
   - {fileID: 1537319167}
-  - {fileID: 705507995}
   - {fileID: 1175801561}
   - {fileID: 1501301282}
   - {fileID: 940355564}
