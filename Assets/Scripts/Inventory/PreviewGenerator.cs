@@ -68,9 +68,9 @@ public class PreviewGenerator : MonoBehaviour
     // 단일 레이어마스크 정수형 레이어로 변환
     private int GetSingleLayer(LayerMask mask)
     {
-        if (mask.value == 0)
+        if (!IsSingleLayer(mask))
         {
-            throw new System.Exception("LayerMask에 아무 레이어도 선택되지 않았습니다.");
+            throw new System.Exception("LayerMask가 단일 레이어가 아닙니다.");
         }
 
         int value = mask.value;
@@ -83,5 +83,12 @@ public class PreviewGenerator : MonoBehaviour
         }
 
         return layer;
+    }
+
+    // 단일 레이어인지 확인
+    private bool IsSingleLayer(LayerMask mask)
+    {
+        int value = mask.value;
+        return value != 0 && (value & (value - 1)) == 0;
     }
 }
